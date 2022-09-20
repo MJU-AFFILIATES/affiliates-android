@@ -1,0 +1,4 @@
+package com.example.affiliates_android.data.api
+
+object RetrofitInstance {
+}

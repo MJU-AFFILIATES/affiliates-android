@@ -1,13 +1,9 @@
-package com.example.affiliates_android
+package com.example.affiliates_android.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
+import com.example.affiliates_android.R
 import com.example.affiliates_android.databinding.ActivityMainBinding
-import com.example.affiliates_android.ui.view.AddOrDeleteFragment
-import com.example.affiliates_android.ui.view.HomeFragment
-import com.example.affiliates_android.ui.view.SettingFragment
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
