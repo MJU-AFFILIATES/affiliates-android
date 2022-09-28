@@ -40,6 +40,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -80,5 +81,8 @@ dependencies {
     // kakao map
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/libDaumMapAndroid.jar')
+
+    // Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
 }
