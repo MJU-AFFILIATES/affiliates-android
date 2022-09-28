@@ -100,8 +100,8 @@
         android:paddingBottom="20dp"
         android:paddingStart="32dp"
         app:layout_constraintTop_toBottomOf="@id/top_layout"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="18dp"
         android:layout_marginEnd="18dp"/>
 
     <ImageView
@@ -127,9 +127,98 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/setting_review_tv"/>
 
+    <TextView
+        android:id="@+id/setting_notice_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_notice"
+        android:textSize="15sp"
+        android:textColor="@color/dark_gray"
+        android:background="@drawable/border_10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="32dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_guild_tv"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>
 
+    <TextView
+        android:id="@+id/setting_agree_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_agree"
+        android:textSize="15sp"
+        android:textColor="@color/dark_gray"
+        android:background="@drawable/border_10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="32dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_notice_tv"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>
 
+    <TextView
+        android:id="@+id/setting_way_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_way"
+        android:textSize="15sp"
+        android:textColor="@color/dark_gray"
+        android:background="@drawable/border_10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="32dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_agree_tv"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>
 
+    <TextView
+        android:id="@+id/setting_account_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_account"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/setting_way_tv"/>
+
+    <TextView
+        android:id="@+id/setting_logout_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_logout"
+        android:textSize="15sp"
+        android:textColor="@color/dark_gray"
+        android:background="@drawable/border_10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="32dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_account_tv"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>
+
+    <TextView
+        android:id="@+id/setting_withdrawal_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_withdrawal"
+        android:textSize="15sp"
+        android:textColor="@color/dark_gray"
+        android:background="@drawable/border_10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingStart="32dp"
+        app:layout_constraintTop_toBottomOf="@id/setting_logout_tv"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"/>
 
 
 

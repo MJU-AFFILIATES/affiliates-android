@@ -14,8 +14,8 @@
     <string name="set_notice">공지사항</string>
     <string name="set_agree">약관 동의</string>
     <string name="set_way">제휴 등록/삭제 방법</string>
-    <string name="account">계정</string>
-    <string name="logout">로그아웃</string>
-    <string name="withdrawal">회원 탈퇴</string>
+    <string name="set_account">계정</string>
+    <string name="set_logout">로그아웃</string>
+    <string name="set_withdrawal">회원 탈퇴</string>
 
 </resources>
