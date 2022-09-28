@@ -9,7 +9,7 @@ import com.example.affiliates_android.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
     private var _binding: FragmentSettingBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,6 +17,11 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
+
+        binding.settingBackIv.setOnClickListener {
+            // navigation으로 구현하기
+        }
+
         return binding.root
     }
 

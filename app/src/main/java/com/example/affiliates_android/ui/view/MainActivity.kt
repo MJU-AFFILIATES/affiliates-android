@@ -14,33 +14,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setupBottomNavigationView()
-    }
+        setHomeView()
 
-    // bottomNavigationView
-    private fun setupBottomNavigationView() {
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.fragment_add_or_delete -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_layout, AddOrDeleteFragment())
-                        .commit()
-                    true
-                }
-                R.id.fragment_home -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_layout, HomeFragment())
-                        .commit()
-                    true
-                }
-                R.id.fragment_setting -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_layout, SettingFragment())
-                        .commit()
-                    true
-                }
-                else -> false
-            }
+        binding.settingBtn.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, SettingFragment())
+                .commit()
         }
     }
+
+    private fun setHomeView() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout, HomeFragment())
+            .commit()
+    }
+
+
 }
