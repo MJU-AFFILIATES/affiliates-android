@@ -18,6 +18,14 @@
     <string name="set_logout">로그아웃</string>
     <string name="set_withdrawal">회원 탈퇴</string>
 
+<!--  signup  -->
+    <string name="student_id">학번</string>
+    <string name="double_check">중복 확인</string>
+    <string name="nickname">닉네임</string>
+    <string name="password">비밀번호</string>
+    <string name="password_check">비밀번호 확인</string>
+    <string name="signup_btn">완료</string>
+
 <!--    main-->
     <string name="main_loc">서대문구 거북골로 34</string>
     <string name="main_all">전체</string>
