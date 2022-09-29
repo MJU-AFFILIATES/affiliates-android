@@ -7,24 +7,161 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.MainActivity">
 
-    <ImageView
-        android:id="@+id/setting_btn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/setting"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <FrameLayout
-        android:id = "@+id/frame_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <RelativeLayout
+        android:id = "@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/black"/>
+<!--        지도-->
+
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:id="@+id/loc_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/border_10dp_stroke"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/loc_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_loc"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"/>
+
+            <ImageView
+                android:id="@+id/loc_forward_iv"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/arrow_forward"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/setting_iv"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/setting"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@id/loc_layout"
+            app:layout_constraintBottom_toBottomOf="@id/loc_layout"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/filter_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="14dp"
+            app:layout_constraintTop_toBottomOf="@id/loc_layout"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/filter_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_all"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/border_10dp_orange_active"/>
+
+            <TextView
+                android:id="@+id/filter_cafe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_cafe"
+                android:textSize="14sp"
+                android:textColor="@color/orange"
+                android:layout_marginStart="16dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/border_10dp_stroke"/>
+
+            <TextView
+                android:id="@+id/filter_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_bar"
+                android:textSize="14sp"
+                android:textColor="@color/orange"
+                android:layout_marginStart="16dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/border_10dp_stroke"/>
+
+            <TextView
+                android:id="@+id/filter_restaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_restaurant"
+                android:textSize="14sp"
+                android:textColor="@color/orange"
+                android:layout_marginStart="16dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/border_10dp_stroke"/>
+
+            <TextView
+                android:id="@+id/filter_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_activity"
+                android:textSize="14sp"
+                android:textColor="@color/orange"
+                android:layout_marginStart="16dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:background="@drawable/border_10dp_stroke"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

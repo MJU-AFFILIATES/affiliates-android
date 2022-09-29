@@ -2,8 +2,12 @@ package com.example.affiliates_android.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.example.affiliates_android.R
+import com.example.affiliates_android.data.repository.UserRepositoryImpl
 import com.example.affiliates_android.databinding.ActivityMainBinding
+import com.example.affiliates_android.ui.viewmodel.UserViewModel
+import com.example.affiliates_android.ui.viewmodel.UserViewModelProviderFactory
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
@@ -14,19 +18,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setHomeView()
+        // viewModel 사용
+        val userRepository = UserRepositoryImpl()
+        val factory = UserViewModelProviderFactory(userRepository)
+//        userViewModel = ViewModelProvider(this, factory)[UserViewModel::class.java]
 
-        binding.settingBtn.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.frame_layout, SettingFragment())
-                .commit()
-        }
-    }
+//        val mapView = MapView(context)
+//        binding.mapView.addView(mapView)
 
-    private fun setHomeView() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.frame_layout, HomeFragment())
-            .commit()
+
     }
 
 

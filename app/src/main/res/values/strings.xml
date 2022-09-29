@@ -18,4 +18,12 @@
     <string name="set_logout">로그아웃</string>
     <string name="set_withdrawal">회원 탈퇴</string>
 
+<!--    main-->
+    <string name="main_loc">서대문구 거북골로 34</string>
+    <string name="main_all">전체</string>
+    <string name="main_cafe">카페</string>
+    <string name="main_bar">술집</string>
+    <string name="main_restaurant">식당</string>
+    <string name="main_activity">장소</string>
+
 </resources>
