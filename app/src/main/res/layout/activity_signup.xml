@@ -21,10 +21,11 @@
         android:layout_height="match_parent"
         android:layout_marginTop="89dp"
         app:cardCornerRadius="20dp"
-        android:layout_marginBottom="-100dp"
+        android:layout_marginBottom="-15dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
-                app:counterEnabled="true"
                 app:counterMaxLength="8"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/gray"
@@ -61,14 +61,16 @@
                     android:hint="학번"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signup_student_id_double_check_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="64dp"
+                android:layout_height="24dp"
                 android:text="중복 확인"
-                android:textSize="12sp"
+                android:textColor="@color/dark_gray"
+                android:background="@drawable/style_double_check_btn"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/signup_student_id_layout"/>
+                app:layout_constraintTop_toTopOf="@id/signup_student_id_layout"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/signup_nickname_layout"
@@ -90,14 +92,17 @@
                     android:hint="닉네임" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signup_nickname_double_check_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="64dp"
+                android:layout_height="24dp"
                 android:text="중복 확인"
+                android:textColor="@color/dark_gray"
                 android:textSize="12sp"
+                android:background="@drawable/style_double_check_btn"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/signup_nickname_layout"/>
+                app:layout_constraintTop_toTopOf="@id/signup_nickname_layout"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/signup_password_layout"
@@ -143,18 +148,21 @@
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signup_signup_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="57dp"
                 android:text="완료"
-                android:backgroundTint="@color/orange_trans"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:background="@drawable/border_10dp_orange_trans_active"
                 android:paddingTop="14dp"
                 android:paddingBottom="14dp"
                 android:layout_marginTop="49dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup_password_check_layout"/>
+                app:layout_constraintTop_toBottomOf="@id/signup_password_check_layout"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
