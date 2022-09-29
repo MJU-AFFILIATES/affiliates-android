@@ -58,14 +58,14 @@
                     android:id="@+id/signup_student_id_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="학번"/>
+                    android:hint="@string/student_id"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signup_student_id_double_check_btn"
                 android:layout_width="64dp"
                 android:layout_height="24dp"
-                android:text="중복 확인"
+                android:text="@string/double_check"
                 android:textColor="@color/dark_gray"
                 android:background="@drawable/style_double_check_btn"
                 android:layout_marginTop="12dp"
@@ -89,14 +89,14 @@
                     android:id="@+id/signup_nickname_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="닉네임" />
+                    android:hint="@string/nickname" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signup_nickname_double_check_btn"
                 android:layout_width="64dp"
                 android:layout_height="24dp"
-                android:text="중복 확인"
+                android:text="@string/double_check"
                 android:textColor="@color/dark_gray"
                 android:textSize="12sp"
                 android:background="@drawable/style_double_check_btn"
@@ -122,7 +122,7 @@
                     android:id="@+id/signup_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="비밀번호"
+                    android:hint="@string/password"
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +144,7 @@
                     android:id="@+id/signup_password_check_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="비밀번호 확인"
+                    android:hint="@string/password_check"
                     android:inputType="textPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,8 +152,8 @@
                 android:id="@+id/signup_signup_btn"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:text="완료"
-                android:textSize="20dp"
+                android:text="@string/signup_btn"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:background="@drawable/border_10dp_orange_trans_active"
                 android:paddingTop="14dp"
