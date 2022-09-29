@@ -85,4 +85,10 @@ dependencies {
     // Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    // TextInputLayout
+    implementation 'com.google.android.material:material:1.2.1'
+
+    // CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 }
