@@ -4,4 +4,26 @@
     <string name="add_or_delete">제휴 정보 등록/삭제</string>
     <string name="home">홈</string>
     <string name="setting">세팅</string>
+    
+<!--    setting-->
+    <string name="set_title">설정</string>
+    <string name="set_id">60200860</string>
+    <string name="set_name">김민희</string>
+    <string name="set_myreview">내가 작성한 리뷰</string>
+    <string name="set_guide">이용 안내</string>
+    <string name="set_notice">공지사항</string>
+    <string name="set_agree">약관 동의</string>
+    <string name="set_way">제휴 등록/삭제 방법</string>
+    <string name="set_account">계정</string>
+    <string name="set_logout">로그아웃</string>
+    <string name="set_withdrawal">회원 탈퇴</string>
+
+<!--    main-->
+    <string name="main_loc">서대문구 거북골로 34</string>
+    <string name="main_all">전체</string>
+    <string name="main_cafe">카페</string>
+    <string name="main_bar">술집</string>
+    <string name="main_restaurant">식당</string>
+    <string name="main_activity">장소</string>
+
 </resources>

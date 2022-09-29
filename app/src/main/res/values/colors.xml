@@ -11,6 +11,7 @@
     <color name="black">#FF000000</color>
     <color name="dark_gray">#40433B</color>
     <color name="gray">#A0A19D</color>
+    <color name="background_gray">#E5E5E5</color>
     <color name="light_gray">#F2F1F6</color>
     <color name="orange">#FFA52D</color>
     <color name="orange_trans">#80FFA52D</color>
