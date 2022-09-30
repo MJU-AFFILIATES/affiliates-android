@@ -15,7 +15,7 @@
     <color name="hint_gray">#C8CBCF</color>
     <color name="light_gray">#F2F1F6</color>
     <color name="orange">#FFA52D</color>
-    <color name="orange_trans">#80FFA52D</color>
+    <color name="orange_trans">#F2D4A4</color>
     <color name="orange_light">#FFB248</color>
     <color name="orange_dark">#3786C9</color>
     <color name="error_red">#CA2323</color>
