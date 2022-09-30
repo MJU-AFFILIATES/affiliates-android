@@ -18,6 +18,9 @@
     <string name="set_logout">로그아웃</string>
     <string name="set_withdrawal">회원 탈퇴</string>
 
+<!--  login  -->
+    <string name="go_signup"><u>회원가입하기</u></string>
+
 <!--  signup  -->
     <string name="student_id">학번</string>
     <string name="double_check">중복 확인</string>
