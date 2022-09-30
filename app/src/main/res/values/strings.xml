@@ -37,4 +37,10 @@
     <string name="main_restaurant">식당</string>
     <string name="main_activity">장소</string>
 
+<!--    item_store-->
+    <string name="store_nickname">홍길동</string>
+    <string name="store_content">사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요</string>
+    <string name="store_date">2022-09-29</string>
+
+
 </resources>
