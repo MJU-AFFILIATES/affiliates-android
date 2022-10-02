@@ -7,23 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.MainActivity">
 
-    <RelativeLayout
-        android:id = "@+id/map_view"
+    <com.naver.maps.map.MapView
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/layout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@color/black"/>
-<!--        지도-->
-
-
-    </RelativeLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"

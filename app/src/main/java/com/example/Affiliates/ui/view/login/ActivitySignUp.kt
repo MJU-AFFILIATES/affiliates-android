@@ -1,9 +1,8 @@
-package com.example.affiliates_android.ui.view.login
+package com.example.Affiliates.ui.view.login
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.affiliates_android.data.User
-import com.example.affiliates_android.databinding.ActivitySignupBinding
+import com.example.Affiliates.databinding.ActivitySignupBinding
 
 class ActivitySignUp: AppCompatActivity() {
     private val binding: ActivitySignupBinding by lazy {

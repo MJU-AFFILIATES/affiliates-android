@@ -79,8 +79,8 @@ dependencies {
     implementation 'io.coil-kt:coil:2.0.0-rc03'
 
     // kakao map
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/libDaumMapAndroid.jar')
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation files('libs/libDaumMapAndroid.jar')
 
     // Circle ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -90,5 +90,8 @@ dependencies {
 
     // CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // naver map
+    implementation 'com.naver.maps:map-sdk:3.16.0'
 
 }

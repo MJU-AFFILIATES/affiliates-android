@@ -1,8 +1,8 @@
-package com.example.affiliates_android.ui.viewmodel
+package com.example.Affiliates.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.affiliates_android.data.repository.UserRepository
+import com.example.Affiliates.data.repository.UserRepository
 
 @Suppress("UNCHECKED_CAST")
 class UserViewModelProviderFactory(

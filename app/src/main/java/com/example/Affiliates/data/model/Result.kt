@@ -1,4 +1,4 @@
-package com.example.affiliates_android.data.model
+package com.example.Affiliates.data.model
 
 
 import com.squareup.moshi.Json
