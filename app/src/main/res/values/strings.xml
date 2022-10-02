@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">affiliates-android</string>
     <string name="naver_map_client_id">tgbre4sz9u</string>
+    
+    <string name="mju_lat">37.580153641583045</string>
+    <string name="mju_lon">126.9228129200726</string>
 
     <string name="add_or_delete">제휴 정보 등록/삭제</string>
     <string name="home">홈</string>
