@@ -1,4 +1,4 @@
-package com.example.affiliates_android
+package com.example.Affiliates
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

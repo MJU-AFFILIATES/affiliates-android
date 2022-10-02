@@ -1,6 +1,6 @@
-package com.example.affiliates_android.data.api
+package com.example.Affiliates.data.api
 
-import com.example.affiliates_android.data.model.UserResponse
+import com.example.Affiliates.data.model.UserResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

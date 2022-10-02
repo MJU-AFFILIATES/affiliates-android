@@ -1,12 +1,10 @@
-package com.example.affiliates_android.ui.view.login
+package com.example.Affiliates.ui.view.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
-import com.example.affiliates_android.R
-import com.example.affiliates_android.databinding.ActivityLoginBinding
-import com.example.affiliates_android.ui.view.MainActivity
+import com.example.Affiliates.databinding.ActivityLoginBinding
+import com.example.Affiliates.ui.view.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private val binding: ActivityLoginBinding by lazy {

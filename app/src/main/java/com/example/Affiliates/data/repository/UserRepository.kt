@@ -1,6 +1,6 @@
-package com.example.affiliates_android.data.repository
+package com.example.Affiliates.data.repository
 
-import com.example.affiliates_android.data.model.UserResponse
+import com.example.Affiliates.data.model.UserResponse
 import retrofit2.Response
 
 interface UserRepository {

@@ -1,4 +1,4 @@
-package com.example.affiliates_android.ui.view
+package com.example.Affiliates.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 

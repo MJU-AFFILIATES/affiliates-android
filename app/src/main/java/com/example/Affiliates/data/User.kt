@@ -1,4 +1,4 @@
-package com.example.affiliates_android.data
+package com.example.Affiliates.data
 
 data class User(
     val studentId: String,

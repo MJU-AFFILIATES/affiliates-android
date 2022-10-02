@@ -1,4 +1,4 @@
-package com.example.affiliates_android.util
+package com.example.Affiliates.util
 
 
 object Constants {

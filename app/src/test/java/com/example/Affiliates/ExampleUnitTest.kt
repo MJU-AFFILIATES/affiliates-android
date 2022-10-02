@@ -1,4 +1,4 @@
-package com.example.affiliates_android
+package com.example.Affiliates
 
 import org.junit.Test
 

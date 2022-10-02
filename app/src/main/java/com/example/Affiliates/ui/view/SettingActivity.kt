@@ -1,8 +1,8 @@
-package com.example.affiliates_android.ui.view
+package com.example.Affiliates.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.affiliates_android.databinding.ActivitySettingBinding
+import com.example.Affiliates.databinding.ActivitySettingBinding
 
 class SettingActivity: AppCompatActivity() {
     private val binding: ActivitySettingBinding by lazy {
