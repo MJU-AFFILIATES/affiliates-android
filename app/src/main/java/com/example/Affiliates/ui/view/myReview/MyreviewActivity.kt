@@ -73,6 +73,6 @@ class MyreviewActivity: AppCompatActivity() {
     }
 
     private fun getMyReview() {
-        val myReviewRetrofit = ApplicationClass.
+        // 
     }
 }
