@@ -2,9 +2,9 @@ package com.example.Affiliates.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.databinding.ActivitySettingBinding
+import com.example.Affiliates.ui.view.myReview.MyreviewActivity
 
 class SettingActivity: AppCompatActivity() {
     private val binding: ActivitySettingBinding by lazy {
