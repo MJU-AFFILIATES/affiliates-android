@@ -35,7 +35,8 @@
 
         <activity android:name="com.example.Affiliates.ui.view.login.ActivitySignUp"/>
         <activity android:name="com.example.Affiliates.ui.view.MainActivity"/>
-<!--        <activity android:name=".ui.view.login.LoginActivity"/>-->
+        <activity android:name=".ui.view.StoreActivity"/>
+        <activity android:name=".ui.view.MyreviewActivity"/>
     </application>
 
 </manifest>

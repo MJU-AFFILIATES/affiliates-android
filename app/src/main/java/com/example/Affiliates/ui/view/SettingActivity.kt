@@ -1,6 +1,8 @@
 package com.example.Affiliates.ui.view
 
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.databinding.ActivitySettingBinding
 
@@ -13,6 +15,13 @@ class SettingActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.settingReviewTv.setOnClickListener {
+            startActivity(Intent(this, MyreviewActivity::class.java))
+        }
+
+        binding.settingBackIv.setOnClickListener {
+            finish()
+        }
 
     }
 }
