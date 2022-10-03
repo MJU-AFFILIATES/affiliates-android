@@ -48,7 +48,19 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
             startActivity(Intent(this, SettingActivity::class.java))
         }
 
+        binding.locTv.setOnClickListener {
+            startActivity(Intent(this, StoreActivity::class.java))
+        }
 
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onMapReady(map: NaverMap) {
