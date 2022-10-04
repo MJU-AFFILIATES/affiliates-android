@@ -1,4 +1,4 @@
-package com.example.Affiliates.ui.view
+package com.example.Affiliates.ui.view.store
 
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
