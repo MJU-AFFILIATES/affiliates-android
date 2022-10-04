@@ -4,4 +4,5 @@
         <domain includeSubdomains="true">map.naver.com</domain>
         <domain includeSubdomains="true">map.naver.net</domain>
     </domain-config>
+    <base-config cleartextTrafficPermitted="true"/>
 </network-security-config>

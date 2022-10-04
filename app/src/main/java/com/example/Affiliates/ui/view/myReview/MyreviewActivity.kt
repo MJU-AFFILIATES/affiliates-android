@@ -2,10 +2,17 @@ package com.example.Affiliates.ui.view.myReview
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.Affiliates.data.model.Review
 import com.example.Affiliates.databinding.ActivityMyreviewBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 class MyreviewActivity: AppCompatActivity() {
     private val binding: ActivityMyreviewBinding by lazy {
@@ -21,9 +28,33 @@ class MyreviewActivity: AppCompatActivity() {
             finish()
         }
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://13.124.107.214")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
-        setUpRecyclerView()
-        getMyReview()
+        val service = retrofit.create(MyReviewApi::class.java)
+
+        // GET
+        service.getMyReviewList().enqueue(object : Callback<ArrayList<MyReviewResult>> {
+            override fun onFailure(call: Call<ArrayList<MyReviewResult>>, t: Throwable) {
+                Log.d("MY_REVIEW_RETROFIT", "GET ERROR: "+t.message)
+            }
+
+            override fun onResponse(
+                call: Call<ArrayList<MyReviewResult>>,
+                response: Response<ArrayList<MyReviewResult>>
+            ) {
+                if (response.isSuccessful) {
+                    val myReviewList = response.body()
+                    Log.d("MY_REVIEW_RETROFIT", "GET res: "+myReviewList?.get(0)?.name)
+                }
+            }
+        })
+
+
+        //setUpRecyclerView()
+
     }
 
     private fun addDummy() {
@@ -72,7 +103,4 @@ class MyreviewActivity: AppCompatActivity() {
         binding.myreviewRecylerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun getMyReview() {
-        // 
-    }
 }

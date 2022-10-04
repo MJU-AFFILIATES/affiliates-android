@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.databinding.ActivityLoginBinding
-import com.example.Affiliates.ui.view.MainActivity
+import com.example.Affiliates.ui.view.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private val binding: ActivityLoginBinding by lazy {

@@ -1,4 +1,4 @@
-package com.example.Affiliates.ui.adapter
+package com.example.Affiliates.ui.view.myReview
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load

@@ -1,6 +1,7 @@
 package com.example.Affiliates.data.api
 
-import com.example.Affiliates.util.Constants.BASE_URL
+
+import com.example.Affiliates.util.Constrants.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -34,8 +34,8 @@
             android:value="@string/naver_map_client_id"/>
 
         <activity android:name="com.example.Affiliates.ui.view.login.ActivitySignUp"/>
-        <activity android:name="com.example.Affiliates.ui.view.MainActivity"/>
-        <activity android:name=".ui.view.StoreActivity"/>
+        <activity android:name="com.example.Affiliates.ui.view.main.MainActivity"/>
+        <activity android:name=".ui.view.store.StoreActivity"/>
         <activity android:name=".ui.view.myReview.MyreviewActivity"/>
     </application>
 
