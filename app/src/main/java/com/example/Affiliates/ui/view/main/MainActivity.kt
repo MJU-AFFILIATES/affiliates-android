@@ -4,6 +4,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.databinding.ActivityMainBinding
@@ -30,17 +33,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     }
 
     private lateinit var naverMap: NaverMap
-    private lateinit var locationSource: FusedLocationSource
     private val mapView: MapView by lazy {
         binding.mapView
     }
 
+    private var storeIdx: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(this) // 이거 왜 호출이 안되지?
+        mapView.getMapAsync(this)
 
         binding.settingIv.setOnClickListener{
             startActivity(Intent(this, SettingActivity::class.java))
@@ -49,6 +52,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         binding.locTv.setOnClickListener {
             startActivity(Intent(this, StoreActivity::class.java))
         }
+
+
+
+
 
     }
 
@@ -130,8 +137,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     private fun updateMarker(stores: List<Store>) {
         Log.d("MAIN_RETROFIT", "GET SUCCESS_MARKER")
 
-
         stores.forEach { store ->
+            storeIdx = store.storeIdx
 
             val marker = Marker()
             marker.position = LatLng(store.y.toDouble(), store.x.toDouble())
@@ -148,16 +155,21 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                 else ->  marker.iconTintColor = Color.BLACK
             }
             marker.icon = MarkerIcons.BLACK
+
         }
     }
 
-    // 마커 클릭리스너너
+    // 마커 클릭리스너
     override fun onClick(overlay: Overlay): Boolean {
-//        val selectedModel =
-       return true
+        val intent = Intent(this, StoreActivity::class.java)
+
+        intent.putExtra("storeIdx", storeIdx)
+        Log.d("MAIN_RETROFIT", storeIdx.toString())
+        startActivity(intent)
+
+        return true
     }
 
 
-
-
 }
+
