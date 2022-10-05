@@ -3,8 +3,6 @@ package com.example.Affiliates.util
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
-import com.getit.getit.ui.login.getJwt
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -2,17 +2,14 @@ package com.example.Affiliates.ui.view.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.data.User
 import com.example.Affiliates.databinding.ActivityLoginBinding
+import com.example.Affiliates.ui.view.login.server.AuthService
 import com.example.Affiliates.ui.view.main.MainActivity
-import com.getit.getit.ui.login.saveJwt
-import com.getit.getit.ui.login.server.AuthService
-import com.getit.getit.ui.login.server.Result
-import java.util.regex.Pattern
+import com.example.Affiliates.util.saveJwt
+import com.example.Affiliates.ui.view.login.server.Result
 
 class LoginActivity : AppCompatActivity(), LoginView {
     private val binding: ActivityLoginBinding by lazy {
@@ -50,7 +47,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
                     val authService = AuthService()
                     authService.setLoginView(this@LoginActivity)
-                    authService.login(User(id, pwd))
+                    authService.login(User(id, pwd, ""))
                 }
             }
         }
@@ -58,6 +55,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onLoginSuccess(code: Int, result: Result) {
         saveJwt(result.accessToken, result.refreshToken)
+        Toast.makeText(this, "어서오세요!", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }

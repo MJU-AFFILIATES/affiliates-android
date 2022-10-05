@@ -1,4 +1,4 @@
-package com.getit.getit.ui.login
+package com.example.Affiliates.util
 
 import com.example.Affiliates.util.ApplicationClass.Companion.X_ACCESS_TOKEN
 import com.example.Affiliates.util.ApplicationClass.Companion.X_REFRESH_TOKEN

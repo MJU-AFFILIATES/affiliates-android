@@ -1,6 +1,6 @@
 package com.example.Affiliates.ui.view.login
 
-import com.getit.getit.ui.login.server.Result
+import com.example.Affiliates.ui.view.login.server.Result
 
 interface LoginView {
     fun onLoginSuccess(code: Int, result : Result)

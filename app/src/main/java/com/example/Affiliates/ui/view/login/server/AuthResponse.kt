@@ -1,4 +1,4 @@
-package com.getit.getit.ui.login.server
+package com.example.Affiliates.ui.view.login.server
 
 import com.google.gson.annotations.SerializedName
 

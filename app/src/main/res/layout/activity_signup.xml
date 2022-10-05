@@ -47,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
+                app:errorIconDrawable="@null"
                 app:counterMaxLength="8"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/gray"
@@ -58,6 +59,7 @@
                     android:id="@+id/signup_student_id_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:hint="@string/student_id"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,6 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                app:errorIconDrawable="@null"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/gray"
                 app:boxStrokeColor="@color/dark_gray"
