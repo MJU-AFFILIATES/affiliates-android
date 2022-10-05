@@ -1,4 +1,4 @@
-package com.getit.getit.ui.login.server
+package com.example.Affiliates.ui.view.login.server
 
 import com.example.Affiliates.data.User
 import com.example.Affiliates.ui.view.login.data.Tokens
@@ -15,5 +15,8 @@ interface AuthRetrofitInterface {
 
 //    @POST("/auth/reissue")
 //    fun autoLogin(@Body tokens : Tokens) : Call<AuthResponse>
+
+    @POST("/auth/checkStudent")
+    fun checkStudent(@Body studentNum: String): Call<CheckResponse>
 
 }

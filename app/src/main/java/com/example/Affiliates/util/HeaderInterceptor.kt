@@ -1,6 +1,5 @@
 package com.example.Affiliates.util
 
-import com.getit.getit.ui.login.getJwt
 import okhttp3.Interceptor
 import okhttp3.Response
 
