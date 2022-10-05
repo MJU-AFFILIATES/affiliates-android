@@ -25,6 +25,8 @@ class ReviewAdapter(val reviewList: ArrayList<Review>, val context: Context)
             binding.itemStoreNicknameTv.text = review.nickName
             binding.itemStoreContentTv.text = review.review
             binding.itemStoreDateTv.text = review.createdDate.substring(0,10)
+            binding.itemRatingBar.rating = review.star.toFloat()
+
         }
     }
 

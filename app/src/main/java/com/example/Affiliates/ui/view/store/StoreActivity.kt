@@ -123,6 +123,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
                             Log.d("STORE_RETROFIT", storeIdx.toString())
                             binding.storeTitleTv.text = dto.result[0].name
+                            binding.storeContentTv.text = dto.result[0].contents
 
                         }
 

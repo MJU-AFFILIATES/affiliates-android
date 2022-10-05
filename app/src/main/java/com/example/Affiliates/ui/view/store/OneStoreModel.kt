@@ -12,6 +12,7 @@ data class OneStoreModel(
 data class OneStore(
     val address: String,
     val category: String,
+    val contents: String,
     val imgUrl: String,
     val name: String,
     val storeIdx: Int,
