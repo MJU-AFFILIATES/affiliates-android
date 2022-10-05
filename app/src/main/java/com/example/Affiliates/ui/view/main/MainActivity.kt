@@ -26,6 +26,7 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
+import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import com.naver.maps.map.util.MarkerIcons
 import retrofit2.Call
@@ -33,6 +34,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.Affiliates.R
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
@@ -46,7 +48,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     }
 
     private var storeIdx: Int = 0
-    private lateinit var storeName: String
+    private var category: Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,17 +57,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
-        binding.settingIv.setOnClickListener{
+        binding.settingIv.setOnClickListener {
             startActivity(Intent(this, SettingActivity::class.java))
         }
 
         binding.locTv.setOnClickListener {
             startActivity(Intent(this, StoreActivity::class.java))
         }
-
-
-
-
 
     }
 
@@ -108,11 +107,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         val cameraPosition = CameraPosition(LatLng(37.580153641583045, 126.9228129200726), 15.5)
         naverMap.cameraPosition = cameraPosition
 
-        getStoreListFromAPI()
+        filterCategory()
 
     }
 
-    private fun getStoreListFromAPI() {
+    private fun getStoreListFromAPI(category: Int) {
+        Log.d("STORE_RETROFIT:category", category.toString())
         val retrofit = Retrofit.Builder()
             .baseUrl("http://13.124.107.214")
             .addConverterFactory(GsonConverterFactory.create())
@@ -120,11 +120,12 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
         retrofit.create(MainInterface::class.java).also {
 
-            it.getStoreListFromAPI(0)
+            it.getStoreListFromAPI(category)
                 .enqueue(object : Callback<StoreModel> {
                     override fun onFailure(call: Call<StoreModel>, t: Throwable) {
-                        Log.d("MAIN_RETROFIT", "GET ERROR_2: "+t.message)
+                        Log.d("MAIN_RETROFIT", "GET ERROR_2: " + t.message)
                     }
+
                     override fun onResponse(
                         call: Call<StoreModel>,
                         response: Response<StoreModel>
@@ -148,9 +149,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
         stores.forEach { store ->
             storeIdx = store.storeIdx
-            storeName = store.name
 
             val marker = Marker()
+
             marker.position = LatLng(store.y.toDouble(), store.x.toDouble())
             marker.onClickListener = this
 
@@ -158,15 +159,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
             marker.tag = store.storeIdx
 
             when (store.category) {
-
-                "CAFE" -> marker.iconTintColor = Color.RED
-                "BAR" ->  marker.iconTintColor = Color.YELLOW
-                "RESTAURANT" ->  marker.iconTintColor = Color.GREEN
-                "ACTIVITY" ->  marker.iconTintColor = Color.BLUE
-                else ->  marker.iconTintColor = Color.BLACK
+                "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
+                "BAR" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_bar)
+                "RESTAURANT" -> marker.icon =
+                    OverlayImage.fromResource(R.drawable.marker_restanrant)
+                "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
             }
-            marker.icon = MarkerIcons.BLACK
 
+            when (store.name) {
+                "건강과 땀" -> marker.position = LatLng(37.5794081, 126.9233784)
+            }
         }
     }
 
@@ -181,5 +183,36 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         return true
     }
 
+    private fun filterCategory() {
+        getStoreListFromAPI(1)
+
+        binding.filterAll.setOnClickListener {
+            getStoreListFromAPI(0)
+        }
+
+        binding.filterCafe.setOnClickListener {
+            getStoreListFromAPI(1)
+        }
+
+        binding.filterBar.setOnClickListener {
+            category = 2
+            getStoreListFromAPI(2)
+        }
+
+        binding.filterRestaurant.setOnClickListener {
+            category = 3
+            getStoreListFromAPI(3)
+        }
+
+        binding.filterActivity.setOnClickListener {
+            category = 4
+            getStoreListFromAPI(4)
+        }
+
+
+    }
+
+
 }
+
 
