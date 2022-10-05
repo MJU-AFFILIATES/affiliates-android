@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">affiliates-android</string>
     <string name="naver_map_client_id">tgbre4sz9u</string>
-    
+
     <string name="mju_lat">37.580153641583045</string>
     <string name="mju_lon">126.9228129200726</string>
 
     <string name="add_or_delete">제휴 정보 등록/삭제</string>
     <string name="home">홈</string>
     <string name="setting">세팅</string>
-    
-<!--    setting-->
+
+    <!--    setting-->
     <string name="set_title">설정</string>
     <string name="set_id">60200860</string>
     <string name="set_name">김민희</string>
@@ -22,10 +22,10 @@
     <string name="set_logout">로그아웃</string>
     <string name="set_withdrawal">회원 탈퇴</string>
 
-<!--  login  -->
+    <!--  login  -->
     <string name="go_signup"><u>회원가입하기</u></string>
 
-<!--  signup  -->
+    <!--  signup  -->
     <string name="student_id">학번</string>
     <string name="double_check">중복 확인</string>
     <string name="nickname">닉네임</string>
@@ -33,22 +33,23 @@
     <string name="password_check">비밀번호 확인</string>
     <string name="signup_btn">완료</string>
 
-<!--    main-->
+    <!--    main-->
     <string name="main_loc">서대문구 거북골로 34</string>
     <string name="main_all">전체</string>
     <string name="main_cafe">카페</string>
-    <string name="main_bar">술집</string>
+    <string name="main_bar">주점</string>
     <string name="main_restaurant">식당</string>
-    <string name="main_activity">장소</string>
+    <string name="main_activity">기타</string>
 
-<!--    item_store-->
+    <!--    item_store-->
     <string name="store_activity_content">아이스크림과 감자튀김 제공</string>
+    <string name="store_content_long">현금 결제 시 5% 할인 + 5만원 이상 주문 시 번데기, 계란탕 중 하나 서비스(선택) + 10만원 이상 주문 시 황도, 번데기, 계란탕 중 하나 서비스(선택)</string>
     <string name="store_review">리뷰 작성하기</string>
     <string name="store_nickname">홍길동</string>
     <string name="store_content">사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요 사장님이 친절하고 음식이 맛있어요</string>
     <string name="store_date">2022-09-29</string>
 
-<!--    activty_myreview-->
+    <!--    activty_myreview-->
     <string name="myreview_title">내가 작성한 리뷰</string>
     <string name="myreview_name">가게명</string>
     <string name="myreview_date">2022-09-23</string>
