@@ -1,7 +1,12 @@
 package com.example.Affiliates.ui.view.main
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,6 +14,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.example.Affiliates.databinding.ActivityMainBinding
 import com.example.Affiliates.ui.view.SettingActivity
 import com.example.Affiliates.ui.view.store.Store
@@ -38,6 +46,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     }
 
     private var storeIdx: Int = 0
+    private lateinit var storeName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,15 +148,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
         stores.forEach { store ->
             storeIdx = store.storeIdx
+            storeName = store.name
 
             val marker = Marker()
             marker.position = LatLng(store.y.toDouble(), store.x.toDouble())
             marker.onClickListener = this
 
             marker.map = naverMap
-            marker.tag = store.name
+            marker.tag = store.storeIdx
 
             when (store.category) {
+
                 "CAFE" -> marker.iconTintColor = Color.RED
                 "BAR" ->  marker.iconTintColor = Color.YELLOW
                 "RESTAURANT" ->  marker.iconTintColor = Color.GREEN
@@ -161,15 +172,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
     // 마커 클릭리스너
     override fun onClick(overlay: Overlay): Boolean {
-        val intent = Intent(this, StoreActivity::class.java)
 
-        intent.putExtra("storeIdx", storeIdx)
-        Log.d("MAIN_RETROFIT", storeIdx.toString())
+        val intent = Intent(this, StoreActivity::class.java)
+        intent.putExtra("storeIdx", overlay.tag.toString())
+        Log.d("MAIN_RETROFIT", overlay.tag.toString())
         startActivity(intent)
 
         return true
     }
-
 
 }
 

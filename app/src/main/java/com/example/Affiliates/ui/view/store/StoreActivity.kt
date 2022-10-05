@@ -3,15 +3,12 @@ package com.example.Affiliates.ui.view.store
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.Affiliates.databinding.ActivityStoreBinding
-import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
-import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +26,14 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         binding.storeMap
     }
     private var storeIdx: Int = 0
+    private lateinit var retrofit: Retrofit
+
+    private fun setAdapter(reviewList: ArrayList<Review>) {
+        val mAdapter = ReviewAdapter(reviewList, this)
+        binding.reviewRecyclerview.adapter = mAdapter
+        binding.reviewRecyclerview.layoutManager = LinearLayoutManager(this)
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +41,12 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
 
-        binding.storeReviewIv.setOnClickListener {
+        retrofit = Retrofit.Builder()
+            .baseUrl("http://13.124.107.214")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        binding.reviewBtn.setOnClickListener {
             // 리뷰 쓰는 창 이동
         }
 
@@ -45,8 +55,12 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         }
 
         val secondIntent = intent
-        storeIdx = secondIntent.getIntExtra("storeIdx", 0)
+        val _storeIdx: String? = secondIntent.getStringExtra("storeIdx")
+        storeIdx = _storeIdx!!.toInt()
+        Log.d("STORE_RETROFIT", storeIdx.toString())
 
+        getOneStoreFromAPI()
+        getStoreReviewFromAPI()
     }
 
     override fun onStart() {
@@ -78,20 +92,16 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         Log.d("STORE_RETROFIT", "지도준비")
         naverMap = map
 
-        getOneStoreFromAPI()
 
-        // 값 받아와서 중심점 설정
-//        val cameraPosition = CameraPosition(LatLng())
+
+
     }
 
+
     private fun getOneStoreFromAPI() {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://13.124.107.214")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
         retrofit.create(StroeInterface::class.java).also {
-           // 일단 StoreIdx 1로 했는데 마커에서 받아와야함
+            Log.d("STORE_RETROFIT", storeIdx.toString())
             it.getStoreFromAPI(storeIdx)
                 .enqueue(object : Callback<OneStoreModel> {
 
@@ -110,9 +120,9 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                         }
 
                         response.body()?.let { dto ->
+
                             Log.d("STORE_RETROFIT", storeIdx.toString())
                             binding.storeTitleTv.text = dto.result[0].name
-                            binding.storeImageIv.setImageURI(dto.result[0].imgUrl)!!
 
                         }
 
@@ -125,6 +135,38 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     override fun onClick(overlay: Overlay): Boolean {
         TODO("Not yet implemented")
     }
+
+    private fun getStoreReviewFromAPI() {
+
+        retrofit.create(ReviewInterface::class.java).also {
+            it.getReviewsFromAPI(storeIdx)
+                .enqueue(object : Callback<ReviewModel> {
+
+                    override fun onFailure(call: Call<ReviewModel>, t: Throwable) {
+                        Log.d("REVIEW_RETROFIT", "GET ERROR_2: "+t.message)
+                    }
+
+                    override fun onResponse(
+                        call: Call<ReviewModel>,
+                        response: Response<ReviewModel>
+                    ) {
+                        if (response.isSuccessful.not()) {
+                            Log.d("REVIEW_RETROFIT", "GET ERROR_1")
+                            return
+                        }
+
+                        response.body()?.let { dto ->
+                            Log.d("REVIEW_RETROFIT", storeIdx.toString())
+                            setAdapter(dto.result)
+                        }
+                    }
+
+
+                })
+
+        }
+    }
+
 }
 
 
