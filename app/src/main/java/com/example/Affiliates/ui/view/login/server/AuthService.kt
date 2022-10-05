@@ -36,7 +36,7 @@ class AuthService {
                         }
                         else -> {
                             Log.d("signUp", resp.code.toString())
-                            signUpView.onSignUpFailure(resp.code)
+                            signUpView.onSignUpFailure(resp.code, resp.message)
                         }
                     }
                 }

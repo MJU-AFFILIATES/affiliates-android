@@ -2,6 +2,7 @@ package com.example.Affiliates.ui.view.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -12,8 +13,11 @@ import com.example.Affiliates.ui.view.main.MainActivity
 import com.getit.getit.ui.login.saveJwt
 import com.getit.getit.ui.login.server.AuthService
 import com.getit.getit.ui.login.server.Result
+import com.google.android.material.snackbar.Snackbar
 
 class SignUpActivity: AppCompatActivity(), SignUpView {
+    private var errorMsg: String? = null
+
     private val binding: ActivitySignupBinding by lazy {
         ActivitySignupBinding.inflate(layoutInflater)
     }
@@ -28,13 +32,13 @@ class SignUpActivity: AppCompatActivity(), SignUpView {
         }
     }
 
-//    private fun getUser(): User {
-//        val studentId = binding.signupStudentIdEt.text.toString()
-//        val password = binding.signupPasswordEt.text.toString()
-//        val nickname = binding.signupNicknameEt.text.toString()
-//
-//        return User(studentId, password, nickname)
-//    }
+    private fun getUser(): User {
+        val studentId = binding.signupStudentIdEt.text.toString()
+        val password = binding.signupPasswordEt.text.toString()
+        val nickname = binding.signupNicknameEt.text.toString()
+
+        return User(studentId, password, nickname)
+    }
 
     private fun initView() {
         with(binding) {
@@ -72,25 +76,11 @@ class SignUpActivity: AppCompatActivity(), SignUpView {
 
 
     private fun signUp() {
-//        val passwordPattern : Pattern = Pattern.compile("""^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^+\-=])(?=\S+$).*$""")
-//        val passwordString : String = binding.signUpPasswordEt.text.toString().trim()
-//
-//        if (!(passwordPattern.matcher(passwordString).matches())||
-//            passwordString.length !in 8..16
-//        ){
-//            binding.signUpPasswordErrorTv.visibility = View.VISIBLE
-//            return
-//        }
-//
-//        if (binding.signUpPasswordEt.text.toString() != binding.signUpPasswordCheckEt.text.toString()) {
-//            binding.signUpPasswordCheckErrorTv.visibility = View.VISIBLE
-//            return
-//        }
-
-        val authService = AuthService()
-        authService.setSignUpView(this)
-
-//        authService.signUp(getUser())
+        with(binding) {
+            val authService = AuthService()
+            authService.setSignUpView(this@SignUpActivity)
+            authService.signUp(getUser())
+        }
     }
 
     override fun onSignUpSuccess(code: Int, result: Result) {
@@ -100,18 +90,9 @@ class SignUpActivity: AppCompatActivity(), SignUpView {
         startActivity(intent)
     }
 
-    override fun onSignUpFailure(code: Int) {
-//        when(code){
-//            2001 -> {
-//                binding.signUpEmailErrorTv.visibility = View.VISIBLE
-//            }
-//            2000 -> {
-//                binding.signUpNicknameErrorTv.visibility = View.VISIBLE
-//            }
-//            else ->{
-//                showToast("일시적인 오류입니다. 나중에 다시 시도해 주세요.")
-//            }
-//        }
+    override fun onSignUpFailure(code: Int, message: String) {
+        errorMsg = message
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
 }

@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
                     val authService = AuthService()
                     authService.setLoginView(this@LoginActivity)
-                    authService.login(User(id, pwd))
+                    authService.login(User(id, pwd, ""))
                 }
             }
         }
