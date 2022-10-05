@@ -15,6 +15,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.roundToInt
 
 class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
     private val binding: ActivityStoreBinding by lazy {
@@ -124,7 +125,8 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                             Log.d("STORE_RETROFIT", storeIdx.toString())
                             binding.storeTitleTv.text = dto.result[0].name
                             binding.storeContentTv.text = dto.result[0].contents
-
+//                            binding.reviewAvgStarTv.text = dto.result[0].avgStar
+                            binding.starLayout.rating = (3.64).toFloat()
                         }
 
                     }
