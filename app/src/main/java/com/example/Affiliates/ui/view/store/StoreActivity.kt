@@ -11,9 +11,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityStoreBinding
+import com.example.Affiliates.ui.view.store.dialog.RegisterReviewDialog
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
-import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
@@ -47,6 +47,13 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
     }
 
+    private fun showProfileDialog() {
+        val dialogView = RegisterReviewDialog(this) {
+
+        }
+        dialogView.show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -60,6 +67,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
         binding.reviewBtn.setOnClickListener {
             // 리뷰 쓰는 창 이동
+            showProfileDialog()
         }
 
         binding.storeCancelIv.setOnClickListener {
@@ -176,6 +184,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                             binding.storeContentTv.text = dto.result[0].contents
                             binding.reviewAvgStarTv.text = dto.result[0].avgStar.toString()
                             binding.starLayout.rating = dto.result[0].avgStar.toFloat()
+
 
 
                         }

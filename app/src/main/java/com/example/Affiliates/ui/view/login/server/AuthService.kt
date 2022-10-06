@@ -5,7 +5,6 @@ import com.example.Affiliates.data.User
 import com.example.Affiliates.ui.view.login.CheckView
 import com.example.Affiliates.ui.view.login.LoginView
 import com.example.Affiliates.ui.view.login.SignUpView
-import com.example.Affiliates.ui.view.login.server.CheckResponse
 import com.example.Affiliates.util.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
@@ -77,7 +76,7 @@ class AuthService {
                     val resp: CheckResponse = response.body()!!
                     Log.d("checkStudent", resp.toString())
                     when(val code = resp.code){
-                        1000 -> checkView.onCheckSuccess(code, resp.result)
+                        1000 -> checkView.onCheckSuccess(code, resp.result, "studentNum")
                         else -> checkView.onCheckFailure(code, resp.message)
                     }
                 }
@@ -87,5 +86,25 @@ class AuthService {
             }
         })
         Log.d("checkStudent", "HELLO")
+    }
+
+    fun checkNickname(nickName: String) {
+        val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
+        authService.checkNickName(nickName).enqueue(object: Callback<CheckResponse> {
+            override fun onResponse(call: Call<CheckResponse>, response: Response<CheckResponse>) {
+                if (response.isSuccessful && response.code() == 200) {
+                    val resp: CheckResponse = response.body()!!
+                    Log.d("checkNickName", resp.toString())
+                    when(val code = resp.code){
+                        1000 -> checkView.onCheckSuccess(code, resp.result, "nickName")
+                        else -> checkView.onCheckFailure(code, resp.message)
+                    }
+                }
+            }
+            override fun onFailure(call: Call<CheckResponse>, t: Throwable) {
+                Log.d("checkNickname/FAILURE", t.message.toString())
+            }
+        })
+        Log.d("checkNickname", "HELLO")
     }
 }
