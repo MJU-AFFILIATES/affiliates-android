@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Affiliates.databinding.ItemMyreviewBinding
 
-class MyReviewAdapter(private val myReviewList: ArrayList<MyReviewResult>): RecyclerView.Adapter<MyReviewAdapter.ViewHolder>() {
+class MyReviewAdapter(private val myReviewList: ArrayList<MyReview>): RecyclerView.Adapter<MyReviewAdapter.ViewHolder>() {
     lateinit var bitmap: Bitmap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,7 +21,7 @@ class MyReviewAdapter(private val myReviewList: ArrayList<MyReviewResult>): Recy
     override fun getItemCount(): Int = myReviewList.size
 
     inner class ViewHolder(val binding: ItemMyreviewBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(review: MyReviewResult) {
+        fun bind(review: MyReview) {
             binding.itemMyReviewTitleTv.text = review.name
             binding.myreviewContentTv.text = review.review
             binding.myreviewDateTv.text = review.createdDate.substring(0,10)
