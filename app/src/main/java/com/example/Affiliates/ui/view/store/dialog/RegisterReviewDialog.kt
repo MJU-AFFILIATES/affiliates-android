@@ -7,14 +7,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import com.example.Affiliates.data.CreateReview
 import com.example.Affiliates.databinding.DialogRegisterReviewBinding
-import com.example.Affiliates.ui.view.login.server.AuthService
-import com.example.Affiliates.ui.view.store.Review
+import com.google.android.material.snackbar.Snackbar
 
-class RegisterReviewDialog (
-    context: Context, private val okCallback: (String) -> Unit,
-) : Dialog(context), CreateReviewView { // 뷰를 띄워야하므로 Dialog 클래스는 context를 인자로 받는다.
+class RegisterReviewDialog(
+    storeId: Int, storeName: String, context: Context, private val okCallback: (Boolean) -> Unit,): Dialog(context), CreateReviewView {
 
     private lateinit var binding: DialogRegisterReviewBinding
+    private var storeId = storeId
+    private var storeName = storeName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,36 +30,32 @@ class RegisterReviewDialog (
     }
 
     private fun createReview() {
-//        binding.dialogRegisterReviewBtn.setOnClickListener {
-//            val reviewService = CreateReviewService()
-//            reviewService.setReviewView(this)
-//            reviewService.createReview(getReview())
-//        }
+        binding.dialogRegisterReviewBtn.setOnClickListener {
+            val reviewService = CreateReviewService()
+            reviewService.setReviewView(this@RegisterReviewDialog)
+            reviewService.createReview(getReview())
+        }
     }
 
     private fun getReview(): CreateReview {
         with(binding) {
             val rate = dialogReviewRatingRb.numStars
             val review = dialogReviewInputEt.text.toString()
-            return CreateReview(review, rate, 0)
+            return CreateReview(review, rate, storeId)
         }
     }
 
     private fun initViews() = with(binding) {
+        dialogReviewTitleTv.text = "$storeName 어떠셨나요?"
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        // Button 클릭에 대한 Callback 처리
-        dialogRegisterReviewBtn.setOnClickListener {
-            okCallback(dialogReviewInputEt.text.toString())
-            dismiss()
-        }
     }
 
     override fun onReviewSuccess(code: Int, result: String) {
-        TODO("Not yet implemented")
+        okCallback(true)
+        dismiss()
     }
 
     override fun onReviewFailure(code: Int, message: String) {
-        TODO("Not yet implemented")
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 }

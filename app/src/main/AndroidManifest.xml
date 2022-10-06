@@ -44,6 +44,7 @@
         <activity android:name="com.example.Affiliates.ui.view.main.MainActivity"/>
         <activity android:name=".ui.view.store.StoreActivity"/>
         <activity android:name=".ui.view.myReview.MyreviewActivity"/>
+        <activity android:name=".ui.view.UpdateProfileActivity"/>
     </application>
 
 </manifest>

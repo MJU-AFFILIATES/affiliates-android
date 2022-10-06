@@ -2,14 +2,18 @@ package com.example.Affiliates.ui.view.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.data.User
 import com.example.Affiliates.databinding.ActivityLoginBinding
+import com.example.Affiliates.ui.view.login.data.Tokens
 import com.example.Affiliates.ui.view.login.server.AuthService
 import com.example.Affiliates.ui.view.main.MainActivity
 import com.example.Affiliates.util.saveJwt
 import com.example.Affiliates.ui.view.login.server.Result
+import com.example.Affiliates.util.ApplicationClass
+import com.example.Affiliates.util.getJwt
 
 class LoginActivity : AppCompatActivity(), LoginView {
     private val binding: ActivityLoginBinding by lazy {
@@ -28,7 +32,20 @@ class LoginActivity : AppCompatActivity(), LoginView {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+        if(getJwt() != null){
+            autoLoginMedium()
+        }
         login()
+    }
+
+    fun autoLoginMedium(){
+        val authService = AuthService()
+        authService.setLoginView(this)
+
+        authService.autoLogin(
+            Tokens(getJwt().toString(),
+            ApplicationClass.mSharedPreferences.getString(ApplicationClass.X_REFRESH_TOKEN, null).toString())
+        )
     }
 
     private fun login() {
@@ -62,5 +79,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onLoginFailure(Code: Int, message: String) {
         Toast.makeText(this, "$message", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onAutoLoginFailure() {
+        Log.d("onAutoLoginFailure", "실패...")
     }
 }

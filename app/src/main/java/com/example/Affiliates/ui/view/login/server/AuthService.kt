@@ -5,6 +5,7 @@ import com.example.Affiliates.data.User
 import com.example.Affiliates.ui.view.login.CheckView
 import com.example.Affiliates.ui.view.login.LoginView
 import com.example.Affiliates.ui.view.login.SignUpView
+import com.example.Affiliates.ui.view.login.data.Tokens
 import com.example.Affiliates.util.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
@@ -106,5 +107,30 @@ class AuthService {
             }
         })
         Log.d("checkNickname", "HELLO")
+    }
+
+    fun autoLogin(tokens: Tokens){
+        val authService = ApplicationClass.retrofit.create(AuthRetrofitInterface::class.java)
+        authService.autoLogin(tokens)
+            .enqueue(object: Callback<AuthResponse> {
+                override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+                    Log.d("테스트", response.toString());
+                    if(response.body() == null){
+                        loginView.onAutoLoginFailure()
+                    }else {
+
+                        val resp: AuthResponse = response.body()!!
+                        when (val code = resp.code) {
+                            1000 -> loginView.onLoginSuccess(code, resp.result!!)
+                            else -> loginView.onAutoLoginFailure()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                    Log.d("LOGIN/FAILURE", t.message.toString())
+                }
+
+            })
     }
 }
