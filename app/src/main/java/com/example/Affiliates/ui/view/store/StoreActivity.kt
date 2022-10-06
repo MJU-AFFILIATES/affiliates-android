@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -13,7 +12,6 @@ import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityStoreBinding
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraPosition
-import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
@@ -25,7 +23,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.math.roundToInt
 
 class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
     private val binding: ActivityStoreBinding by lazy {
@@ -111,7 +108,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
     private fun getOneStoreFromAPI() {
 
-        retrofit.create(StroeInterface::class.java).also {
+        retrofit.create(StoreInterface::class.java).also {
             Log.d("STORE_RETROFIT", storeIdx.toString())
             it.getStoreFromAPI(storeIdx)
                 .enqueue(object : Callback<OneStoreModel> {
@@ -158,8 +155,6 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                                     OverlayImage.fromResource(R.drawable.marker_restanrant)
                                 "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
                             }
-
-
 
                             marker.map = naverMap
 
@@ -214,7 +209,6 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                             setAdapter(dto.result)
                         }
                     }
-
 
                 })
 

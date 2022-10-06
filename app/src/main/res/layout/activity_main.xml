@@ -82,7 +82,7 @@
             app:layout_constraintTop_toBottomOf="@id/loc_layout"
             app:layout_constraintStart_toStartOf="@id/loc_layout">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_all"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
@@ -94,7 +94,7 @@
                 android:background="@drawable/style_main_button_color"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_cafe"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
@@ -107,7 +107,7 @@
 
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_bar"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
@@ -118,7 +118,7 @@
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_restaurant"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
@@ -129,7 +129,7 @@
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_activity"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
