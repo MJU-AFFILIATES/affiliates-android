@@ -17,5 +17,6 @@ data class OneStore(
     val name: String,
     val storeIdx: Int,
     val x: String,
-    val y: String
+    val y: String,
+    val avgStar: Double
 )

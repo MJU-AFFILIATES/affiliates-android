@@ -5,11 +5,17 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityStoreBinding
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
+import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
+import com.naver.maps.map.overlay.OverlayImage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +34,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     }
     private var storeIdx: Int = 0
     private lateinit var retrofit: Retrofit
+
 
     private fun setAdapter(reviewList: ArrayList<Review>) {
         val mAdapter = ReviewAdapter(reviewList, this)
@@ -93,8 +100,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         Log.d("STORE_RETROFIT", "지도준비")
         naverMap = map
 
-
-
+        getOneStoreFromAPI()
 
     }
 
@@ -123,17 +129,40 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                         response.body()?.let { dto ->
 
                             Log.d("STORE_RETROFIT", storeIdx.toString())
+
+//                            val cameraUpdate = CameraUpdate.scrollTo(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()))
+//                            naverMap.moveCamera(cameraUpdate)
+//
+//                            val marker = Marker()
+//                            marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
+//                            marker.map = naverMap
+//
+//                            when (dto.result[0].category) {
+//                                "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
+//                                "BAR" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_bar)
+//                                "RESTAURANT" -> marker.icon =
+//                                    OverlayImage.fromResource(R.drawable.marker_restanrant)
+//                                "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
+//                            }
+//
+//                            if (dto.result[0].name == "건강과 땀") {
+//                                marker.position = LatLng(37.5794081, 126.9233784)
+//                            }
+
                             binding.storeTitleTv.text = dto.result[0].name
                             binding.storeContentTv.text = dto.result[0].contents
-//                            binding.reviewAvgStarTv.text = dto.result[0].avgStar
-                            binding.starLayout.rating = (3.64).toFloat()
+                            binding.reviewAvgStarTv.text = dto.result[0].avgStar.toString()
+                            binding.starLayout.rating = dto.result[0].avgStar.toFloat()
+
+
+
                         }
 
                     }
 
                 })
-            }
         }
+    }
 
     override fun onClick(overlay: Overlay): Boolean {
         TODO("Not yet implemented")
