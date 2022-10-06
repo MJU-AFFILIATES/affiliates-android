@@ -96,6 +96,7 @@
                     android:id="@+id/signup_nickname_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="text"
                     android:hint="@string/nickname" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +167,8 @@
                 android:text="@string/signup_btn"
                 android:textSize="20sp"
                 android:textColor="@color/white"
-                android:background="@drawable/border_10dp_orange_trans_active"
+                android:background="@drawable/border_10dp_orange_active"
+                android:clickable="true"
                 android:paddingTop="14dp"
                 android:paddingBottom="14dp"
                 android:layout_marginTop="49dp"

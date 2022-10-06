@@ -19,4 +19,6 @@ interface AuthRetrofitInterface {
     @POST("/auth/checkStudent")
     fun checkStudent(@Body studentNum: String): Call<CheckResponse>
 
+    @POST("/auth/checkNickName")
+    fun checkNickName(@Body nickName: String): Call<CheckResponse>
 }
