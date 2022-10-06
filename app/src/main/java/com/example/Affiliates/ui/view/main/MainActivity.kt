@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
 
         // 지도의 중심점 이동
-        val cameraPosition = CameraPosition(LatLng(37.580153641583045, 126.9228129200726), 15.5)
+        val cameraPosition = CameraPosition(LatLng(37.58079391,126.92466831), 16.2)
         naverMap.cameraPosition = cameraPosition
 
         getStoreListFromAPI(0)

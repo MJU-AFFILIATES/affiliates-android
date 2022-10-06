@@ -71,7 +71,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         storeIdx = _storeIdx!!.toInt()
         Log.d("STORE_RETROFIT", storeIdx.toString())
 
-        getOneStoreFromAPI()
+
         getStoreReviewFromAPI()
     }
 
@@ -133,14 +133,23 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                         response.body()?.let { dto ->
 
                             Log.d("STORE_RETROFIT", storeIdx.toString())
-
-                            val cameraPosition = CameraPosition(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()), 17.5)
-                            naverMap.cameraPosition = cameraPosition
-//
                             val marker = Marker()
-                            marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
 
-                            Log.d("STORE_RETROFIT_x,y", "${dto.result[0].y.toDouble()}, ${dto.result[0].x.toDouble()}" )
+                            if (dto.result[0].name == "건강과 땀") {
+                                val cameraPosition = CameraPosition(LatLng(37.5794081, 126.9233784), 17.5)
+                                naverMap.cameraPosition = cameraPosition
+
+                                marker.position = LatLng(37.5794081, 126.9233784)
+                            }
+                            else {
+                                val cameraPosition = CameraPosition(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()), 17.5)
+                                naverMap.cameraPosition = cameraPosition
+
+                                marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
+
+                                Log.d("STORE_RETROFIT_x,y", "${dto.result[0].y.toDouble()}, ${dto.result[0].x.toDouble()}" )
+
+                            }
 
                             when (dto.result[0].category) {
                                 "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
@@ -150,9 +159,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                                 "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
                             }
 
-                            if (dto.result[0].name == "건강과 땀") {
-                                marker.position = LatLng(37.5794081, 126.9233784)
-                            }
+
 
                             marker.map = naverMap
 
@@ -165,12 +172,10 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                                 .centerCrop()
                                 .into(binding.storeImage)
 
-
                             binding.storeTitleTv.text = dto.result[0].name
                             binding.storeContentTv.text = dto.result[0].contents
                             binding.reviewAvgStarTv.text = dto.result[0].avgStar.toString()
                             binding.starLayout.rating = dto.result[0].avgStar.toFloat()
-
 
 
                         }
