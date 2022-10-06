@@ -1,7 +1,7 @@
 package com.example.Affiliates.ui.view.store
 
-import com.example.Affiliates.ui.view.login.server.CheckResponse
-import com.example.Affiliates.ui.view.store.dialog.ReviewResponse
+import com.example.Affiliates.data.CreateReview
+import com.example.Affiliates.ui.view.store.dialog.CreateReviewResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -15,6 +15,6 @@ interface ReviewInterface {
     ): Call<ReviewModel>
 
     @POST("/stores/review")
-    fun createReview(@Body review: Review): Call<ReviewResponse>
+    fun createReview(@Body createReview: CreateReview): Call<CreateReviewResponse>
 //    @POST
 }

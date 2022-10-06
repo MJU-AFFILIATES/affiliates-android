@@ -36,6 +36,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     }
     private var storeIdx: Int = 0
     private lateinit var storeName: String
+    private lateinit var userName: String
     private lateinit var retrofit: Retrofit
 
 
@@ -47,8 +48,8 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     }
 
     private fun showProfileDialog() {
-        val dialogView = RegisterReviewDialog(this) {
-
+        val dialogView = RegisterReviewDialog(storeIdx, storeName, this) {
+            getStoreReviewFromAPI()
         }
         dialogView.show()
     }
@@ -113,9 +114,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         naverMap = map
 
         getOneStoreFromAPI()
-
     }
-
 
     private fun getOneStoreFromAPI() {
 
@@ -143,6 +142,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                             Log.d("STORE_RETROFIT", storeIdx.toString())
                             val marker = Marker()
                             storeName = dto.result[0].name
+//                            userName = dto
 
                             if (dto.result[0].name == "건강과 땀") {
                                 val cameraPosition = CameraPosition(LatLng(37.5794081, 126.9233784), 17.5)
@@ -183,9 +183,6 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                             binding.storeContentTv.text = dto.result[0].contents
                             binding.reviewAvgStarTv.text = dto.result[0].avgStar.toString()
                             binding.starLayout.rating = dto.result[0].avgStar.toFloat()
-
-
-
                         }
 
                     }
