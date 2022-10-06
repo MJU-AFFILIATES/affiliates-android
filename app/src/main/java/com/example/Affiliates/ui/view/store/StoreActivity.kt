@@ -12,6 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityStoreBinding
 import com.example.Affiliates.ui.view.store.dialog.RegisterReviewDialog
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
