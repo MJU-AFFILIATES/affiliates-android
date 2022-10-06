@@ -1,22 +1,11 @@
 package com.example.Affiliates.ui.view.main
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.drawable.DrawableCompat
+import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityMainBinding
 import com.example.Affiliates.ui.view.SettingActivity
 import com.example.Affiliates.ui.view.store.Store
@@ -27,14 +16,11 @@ import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.overlay.OverlayImage
-import com.naver.maps.map.util.FusedLocationSource
-import com.naver.maps.map.util.MarkerIcons
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.Affiliates.R
 
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
@@ -49,6 +35,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
     private var storeIdx: Int = 0
     private var category: Int = 0
+    var markerList: ArrayList<Marker> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,7 +94,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         val cameraPosition = CameraPosition(LatLng(37.58079391,126.92466831), 16.2)
         naverMap.cameraPosition = cameraPosition
 
-        getStoreListFromAPI(0)
+        filterCategory()
+
 
     }
 
@@ -147,6 +135,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     private fun updateMarker(stores: List<Store>) {
         Log.d("MAIN_RETROFIT", "GET SUCCESS_MARKER")
 
+
         stores.forEach { store ->
             storeIdx = store.storeIdx
 
@@ -169,6 +158,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
             when (store.name) {
                 "건강과 땀" -> marker.position = LatLng(37.5794081, 126.9233784)
             }
+
+            markerList.add(marker)
+            Log.d("MAIN_RETROFIT-size", markerList.size.toString())
+
+
         }
     }
 
@@ -182,37 +176,71 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
         return true
     }
-//
-//    private fun filterCategory() {
-//        getStoreListFromAPI(1)
-//
-//        binding.filterAll.setOnClickListener {
-//            category = 0
-//            getStoreListFromAPI(0)
-//        }
-//
-//        binding.filterCafe.setOnClickListener {
-//            category = 1
-//            getStoreListFromAPI(1)
-//        }
-//
-//        binding.filterBar.setOnClickListener {
-//            category = 2
-//            getStoreListFromAPI(2)
-//        }
-//
-//        binding.filterRestaurant.setOnClickListener {
-//            category = 3
-//            getStoreListFromAPI(3)
-//        }
-//
-//        binding.filterActivity.setOnClickListener {
-//            category = 4
-//            getStoreListFromAPI(4)
-//        }
-//
-//
-//    }
+
+    private fun filterCategory() {
+        getStoreListFromAPI(0)
+
+        binding.filterAll.setOnClickListener {
+            buttonEnabled()
+            binding.filterAll.setEnabled(true)
+
+            deleteMarker()
+            category = 0
+            getStoreListFromAPI(0)
+        }
+
+        binding.filterCafe.setOnClickListener {
+            buttonEnabled()
+            binding.filterCafe.setEnabled(true)
+
+            deleteMarker()
+            category = 1
+            getStoreListFromAPI(1)
+        }
+
+        binding.filterBar.setOnClickListener {
+            buttonEnabled()
+            binding.filterBar.setEnabled(true)
+
+            deleteMarker()
+            category = 2
+            getStoreListFromAPI(2)
+        }
+
+        binding.filterRestaurant.setOnClickListener {
+            buttonEnabled()
+            binding.filterRestaurant.setEnabled(true)
+
+            deleteMarker()
+            category = 3
+            getStoreListFromAPI(3)
+        }
+
+        binding.filterActivity.setOnClickListener {
+            buttonEnabled()
+            binding.filterActivity.setEnabled(true)
+
+            deleteMarker()
+            category = 4
+            getStoreListFromAPI(4)
+        }
+
+    }
+
+    private fun buttonEnabled() {
+        binding.filterAll.setEnabled(false)
+        binding.filterCafe.setEnabled(false)
+        binding.filterBar.setEnabled(false)
+        binding.filterRestaurant.setEnabled(false)
+        binding.filterActivity.setEnabled(false)
+    }
+
+    private fun deleteMarker() {
+        for (marker in markerList) {
+            Log.d("MAIN_RETROFIT", marker.map.toString())
+            marker.map = null
+        }
+    }
 
 
 }

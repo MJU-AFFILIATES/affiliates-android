@@ -82,60 +82,60 @@
             app:layout_constraintTop_toBottomOf="@id/loc_layout"
             app:layout_constraintStart_toStartOf="@id/loc_layout">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_all"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:text="@string/main_all"
                 android:textSize="14sp"
-                android:textColor="@color/orange"
+                android:textColor="@drawable/category_txt_color"
                 android:textStyle="bold"
                 android:enabled="true"
                 android:background="@drawable/style_main_button_color"
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_cafe"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:text="@string/main_cafe"
                 android:textSize="14sp"
-                android:textColor="@color/orange"
+                android:textColor="@drawable/category_txt_color"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"
 
                 />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_bar"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:text="@string/main_bar"
                 android:textSize="14sp"
-                android:textColor="@color/orange"
+                android:textColor="@drawable/category_txt_color"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_restaurant"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:text="@string/main_restaurant"
                 android:textSize="14sp"
-                android:textColor="@color/orange"
+                android:textColor="@drawable/category_txt_color"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_activity"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:text="@string/main_activity"
                 android:textSize="14sp"
-                android:textColor="@color/orange"
+                android:textColor="@drawable/category_txt_color"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"/>
