@@ -1,9 +1,11 @@
 package com.example.Affiliates.ui.view.login
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.data.User
@@ -18,7 +20,7 @@ import java.util.regex.Pattern
 class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
     private var errorMsg: String? = null
     private var studentID = true
-    private var nickname = true
+    private var nickName = true
 
     private val binding: ActivitySignupBinding by lazy {
         ActivitySignupBinding.inflate(layoutInflater)
@@ -33,12 +35,24 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
             signUp()
         }
         RemoveErrorMsg()
+        // 추후 리팩토링 (파라미터로 넘겨주기)
         checkStudentID()
-//        checkNickname()
+        checkNickname()
+    }
+
+    private fun closeKeyboard()
+    {
+        var view = this.currentFocus
+        if(view != null)
+        {
+            val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     private fun checkStudentID() {
         binding.signupStudentIdDoubleCheckBtn.setOnClickListener {
+            closeKeyboard()
             var id = binding.signupStudentIdEt.text.toString()
             if (id.isEmpty() || id.length != 8) {
                 binding.signupStudentIdLayout.error = "학번 형식을 확인해 주세요."
@@ -49,6 +63,23 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
                 authService.setCheckView(this)
                 authService.checkStudent(binding.signupStudentIdEt.text.toString())
                 Log.d("TEST", binding.signupStudentIdEt.text.toString())
+            }
+        }
+    }
+
+    private fun checkNickname() {
+        binding.signupNicknameDoubleCheckBtn.setOnClickListener {
+            closeKeyboard()
+            var id = binding.signupNicknameEt.text.toString()
+            if (id.isEmpty()) {
+                binding.signupNicknameLayout.error = "닉네임을 입력해 주세요."
+                RemoveFocus()
+            }
+            else {
+                val authService = AuthService()
+                authService.setCheckView(this)
+                authService.checkNickname(binding.signupNicknameEt.text.toString())
+                Log.d("TEST", binding.signupNicknameEt.text.toString())
             }
         }
     }
@@ -73,6 +104,8 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
             signupNicknameEt.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     signupNicknameLayout.isErrorEnabled = false
+                    binding.signupNicknameDoubleCheckBtn.visibility = View.VISIBLE
+                    nickName = true
                 }
             }
             signupPasswordEt.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -124,7 +157,7 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
             return if (value.isEmpty()) {
                 signupNicknameLayout.error = "닉네임을 입력해 주세요."
                 false
-            } else if (nickname) {
+            } else if (nickName) {
                 signupNicknameLayout.error = "닉네임 중복확인을 해주세요."
                 false
             } else {
@@ -205,17 +238,32 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun onCheckSuccess(code: Int, result: Boolean) {
-        studentID = result
-        if(studentID) {
-            Snackbar.make(binding.root, "중복된 학번입니다.", Snackbar.LENGTH_SHORT).show()
-        }
-        else {
-            binding.signupStudentIdDoubleCheckBtn.visibility = View.GONE
-            Snackbar.make(binding.root, "사용 가능한 학번입니다.", Snackbar.LENGTH_SHORT).show()
+    override fun onCheckSuccess(code: Int, result: Boolean, item: String) {
+        when(item){
+            "studentNum" -> {
+                studentID = result
+                if(studentID) {
+                    Snackbar.make(binding.root, "사용 중인 학번입니다.", Snackbar.LENGTH_SHORT).show()
+                }
+                else {
+                    binding.signupStudentIdDoubleCheckBtn.visibility = View.GONE
+                    Snackbar.make(binding.root, "사용 가능한 학번입니다.", Snackbar.LENGTH_SHORT).show()
+                }
+                binding.signupStudentIdLayout.isErrorEnabled = false
+            }
+            "nickName" -> {
+                nickName = result
+                if(nickName) {
+                    Snackbar.make(binding.root, "사용 중인 닉네임입니다.", Snackbar.LENGTH_SHORT).show()
+                }
+                else {
+                    binding.signupNicknameDoubleCheckBtn.visibility = View.GONE
+                    Snackbar.make(binding.root, "사용 가능한 닉네임입니다.", Snackbar.LENGTH_SHORT).show()
+                }
+                binding.signupStudentIdLayout.isErrorEnabled = false
+            }
         }
         RemoveFocus()
-        binding.signupStudentIdLayout.isErrorEnabled = false
     }
 
     override fun onCheckFailure(Code: Int, message: String) {
