@@ -35,6 +35,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         binding.storeMap
     }
     private var storeIdx: Int = 0
+    private lateinit var storeName: String
     private lateinit var retrofit: Retrofit
 
 
@@ -64,6 +65,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
             .build()
 
         binding.reviewBtn.setOnClickListener {
+            Log.d("STORE_RETROFIT", "$storeIdx, $storeName")
             // 리뷰 쓰는 창 이동
             showProfileDialog()
         }
@@ -140,6 +142,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
                             Log.d("STORE_RETROFIT", storeIdx.toString())
                             val marker = Marker()
+                            storeName = dto.result[0].name
 
                             if (dto.result[0].name == "건강과 땀") {
                                 val cameraPosition = CameraPosition(LatLng(37.5794081, 126.9233784), 17.5)
