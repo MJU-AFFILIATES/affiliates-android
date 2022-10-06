@@ -4,7 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityStoreBinding
 import com.naver.maps.geometry.LatLng
@@ -130,24 +134,37 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
                             Log.d("STORE_RETROFIT", storeIdx.toString())
 
-//                            val cameraUpdate = CameraUpdate.scrollTo(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()))
-//                            naverMap.moveCamera(cameraUpdate)
+                            val cameraPosition = CameraPosition(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()), 17.5)
+                            naverMap.cameraPosition = cameraPosition
 //
-//                            val marker = Marker()
-//                            marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
-//                            marker.map = naverMap
-//
-//                            when (dto.result[0].category) {
-//                                "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
-//                                "BAR" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_bar)
-//                                "RESTAURANT" -> marker.icon =
-//                                    OverlayImage.fromResource(R.drawable.marker_restanrant)
-//                                "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
-//                            }
-//
-//                            if (dto.result[0].name == "건강과 땀") {
-//                                marker.position = LatLng(37.5794081, 126.9233784)
-//                            }
+                            val marker = Marker()
+                            marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
+
+                            Log.d("STORE_RETROFIT_x,y", "${dto.result[0].y.toDouble()}, ${dto.result[0].x.toDouble()}" )
+
+                            when (dto.result[0].category) {
+                                "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
+                                "BAR" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_bar)
+                                "RESTAURANT" -> marker.icon =
+                                    OverlayImage.fromResource(R.drawable.marker_restanrant)
+                                "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
+                            }
+
+                            if (dto.result[0].name == "건강과 땀") {
+                                marker.position = LatLng(37.5794081, 126.9233784)
+                            }
+
+                            marker.map = naverMap
+
+                            Glide.with(binding.root.context)
+                                .load(dto.result[0].imgUrl).apply(
+                                    RequestOptions()
+                                        .skipMemoryCache(true)
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                )
+                                .centerCrop()
+                                .into(binding.storeImage)
+
 
                             binding.storeTitleTv.text = dto.result[0].name
                             binding.storeContentTv.text = dto.result[0].contents

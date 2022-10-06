@@ -68,6 +68,7 @@
                     app:layout_constraintEnd_toEndOf="parent">
 
                     <ImageView
+                        android:id="@+id/store_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@color/gray"/>
