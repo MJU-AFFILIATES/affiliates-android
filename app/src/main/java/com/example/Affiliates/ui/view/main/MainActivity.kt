@@ -104,10 +104,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
 
         // 지도의 중심점 이동
-        val cameraPosition = CameraPosition(LatLng(37.580153641583045, 126.9228129200726), 15.5)
+        val cameraPosition = CameraPosition(LatLng(37.58079391,126.92466831), 16.2)
         naverMap.cameraPosition = cameraPosition
 
-        filterCategory()
+        getStoreListFromAPI(0)
 
     }
 
@@ -182,35 +182,37 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
 
         return true
     }
-
-    private fun filterCategory() {
-        getStoreListFromAPI(1)
-
-        binding.filterAll.setOnClickListener {
-            getStoreListFromAPI(0)
-        }
-
-        binding.filterCafe.setOnClickListener {
-            getStoreListFromAPI(1)
-        }
-
-        binding.filterBar.setOnClickListener {
-            category = 2
-            getStoreListFromAPI(2)
-        }
-
-        binding.filterRestaurant.setOnClickListener {
-            category = 3
-            getStoreListFromAPI(3)
-        }
-
-        binding.filterActivity.setOnClickListener {
-            category = 4
-            getStoreListFromAPI(4)
-        }
-
-
-    }
+//
+//    private fun filterCategory() {
+//        getStoreListFromAPI(1)
+//
+//        binding.filterAll.setOnClickListener {
+//            category = 0
+//            getStoreListFromAPI(0)
+//        }
+//
+//        binding.filterCafe.setOnClickListener {
+//            category = 1
+//            getStoreListFromAPI(1)
+//        }
+//
+//        binding.filterBar.setOnClickListener {
+//            category = 2
+//            getStoreListFromAPI(2)
+//        }
+//
+//        binding.filterRestaurant.setOnClickListener {
+//            category = 3
+//            getStoreListFromAPI(3)
+//        }
+//
+//        binding.filterActivity.setOnClickListener {
+//            category = 4
+//            getStoreListFromAPI(4)
+//        }
+//
+//
+//    }
 
 
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">affiliates-android</string>
+    <string name="app_name">명지제휴지도</string>
     <string name="naver_map_client_id">tgbre4sz9u</string>
 
     <string name="mju_lat">37.580153641583045</string>

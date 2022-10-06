@@ -4,18 +4,26 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
+import com.example.Affiliates.R
 import com.example.Affiliates.databinding.ActivityStoreBinding
 import com.example.Affiliates.ui.view.store.dialog.RegisterReviewDialog
 import com.naver.maps.map.MapView
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
+import com.naver.maps.map.overlay.OverlayImage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.roundToInt
 
 class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickListener {
     private val binding: ActivityStoreBinding by lazy {
@@ -69,7 +77,7 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         storeIdx = _storeIdx!!.toInt()
         Log.d("STORE_RETROFIT", storeIdx.toString())
 
-        getOneStoreFromAPI()
+
         getStoreReviewFromAPI()
     }
 
@@ -131,25 +139,44 @@ class StoreActivity: AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
                         response.body()?.let { dto ->
 
                             Log.d("STORE_RETROFIT", storeIdx.toString())
+                            val marker = Marker()
 
-//                            val cameraUpdate = CameraUpdate.scrollTo(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()))
-//                            naverMap.moveCamera(cameraUpdate)
-//
-//                            val marker = Marker()
-//                            marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
-//                            marker.map = naverMap
-//
-//                            when (dto.result[0].category) {
-//                                "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
-//                                "BAR" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_bar)
-//                                "RESTAURANT" -> marker.icon =
-//                                    OverlayImage.fromResource(R.drawable.marker_restanrant)
-//                                "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
-//                            }
-//
-//                            if (dto.result[0].name == "건강과 땀") {
-//                                marker.position = LatLng(37.5794081, 126.9233784)
-//                            }
+                            if (dto.result[0].name == "건강과 땀") {
+                                val cameraPosition = CameraPosition(LatLng(37.5794081, 126.9233784), 17.5)
+                                naverMap.cameraPosition = cameraPosition
+
+                                marker.position = LatLng(37.5794081, 126.9233784)
+                            }
+                            else {
+                                val cameraPosition = CameraPosition(LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble()), 17.5)
+                                naverMap.cameraPosition = cameraPosition
+
+                                marker.position = LatLng(dto.result[0].y.toDouble(), dto.result[0].x.toDouble())
+
+                                Log.d("STORE_RETROFIT_x,y", "${dto.result[0].y.toDouble()}, ${dto.result[0].x.toDouble()}" )
+
+                            }
+
+                            when (dto.result[0].category) {
+                                "CAFE" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_cafe)
+                                "BAR" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_bar)
+                                "RESTAURANT" -> marker.icon =
+                                    OverlayImage.fromResource(R.drawable.marker_restanrant)
+                                "ACTIVITY" -> marker.icon = OverlayImage.fromResource(R.drawable.marker_activity)
+                            }
+
+
+
+                            marker.map = naverMap
+
+                            Glide.with(binding.root.context)
+                                .load(dto.result[0].imgUrl).apply(
+                                    RequestOptions()
+                                        .skipMemoryCache(true)
+                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                )
+                                .centerCrop()
+                                .into(binding.storeImage)
 
                             binding.storeTitleTv.text = dto.result[0].name
                             binding.storeContentTv.text = dto.result[0].contents
