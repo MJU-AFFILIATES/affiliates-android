@@ -181,35 +181,58 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
         getStoreListFromAPI(0)
 
         binding.filterAll.setOnClickListener {
+            buttonEnabled()
+            binding.filterAll.setEnabled(true)
+
             deleteMarker()
             category = 0
             getStoreListFromAPI(0)
         }
 
         binding.filterCafe.setOnClickListener {
+            buttonEnabled()
+            binding.filterCafe.setEnabled(true)
+
             deleteMarker()
             category = 1
             getStoreListFromAPI(1)
         }
 
         binding.filterBar.setOnClickListener {
+            buttonEnabled()
+            binding.filterBar.setEnabled(true)
+
             deleteMarker()
             category = 2
             getStoreListFromAPI(2)
         }
 
         binding.filterRestaurant.setOnClickListener {
+            buttonEnabled()
+            binding.filterRestaurant.setEnabled(true)
+
             deleteMarker()
             category = 3
             getStoreListFromAPI(3)
         }
 
         binding.filterActivity.setOnClickListener {
+            buttonEnabled()
+            binding.filterActivity.setEnabled(true)
+
             deleteMarker()
             category = 4
             getStoreListFromAPI(4)
         }
 
+    }
+
+    private fun buttonEnabled() {
+        binding.filterAll.setEnabled(false)
+        binding.filterCafe.setEnabled(false)
+        binding.filterBar.setEnabled(false)
+        binding.filterRestaurant.setEnabled(false)
+        binding.filterActivity.setEnabled(false)
     }
 
     private fun deleteMarker() {
