@@ -18,9 +18,19 @@ class RegisterReviewDialog (
         // 만들어놓은 dialog_profile.xml 뷰를 띄운다.
         binding = DialogRegisterReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         context.dialogResize(this@RegisterReviewDialog, 0.9f, 0.6f)
 //        window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         initViews()
+
+        getReviews()
+    }
+
+    private fun getReviews() {
+        with(binding) {
+            val rate = dialogReviewRatingRb.numStars
+            val review = dialogReviewInputEt.text.toString()
+        }
     }
 
     private fun initViews() = with(binding) {
