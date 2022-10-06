@@ -13,8 +13,8 @@ interface AuthRetrofitInterface {
     @POST("/auth/login")
     fun login(@Body user: User): Call<AuthResponse>
 
-//    @POST("/auth/reissue")
-//    fun autoLogin(@Body tokens : Tokens) : Call<AuthResponse>
+    @POST("/auth/reissue")
+    fun autoLogin(@Body tokens : Tokens) : Call<AuthResponse>
 
     @POST("/auth/checkStudent")
     fun checkStudent(@Body studentNum: String): Call<CheckResponse>
