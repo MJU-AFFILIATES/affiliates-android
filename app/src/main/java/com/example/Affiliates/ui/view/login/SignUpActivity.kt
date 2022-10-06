@@ -5,17 +5,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.Affiliates.R
 import com.example.Affiliates.data.User
 import com.example.Affiliates.databinding.ActivitySignupBinding
 import com.example.Affiliates.ui.view.login.server.AuthService
+import com.example.Affiliates.ui.view.login.server.Result
 import com.example.Affiliates.ui.view.main.MainActivity
 import com.example.Affiliates.util.saveJwt
-import com.example.Affiliates.ui.view.login.server.Result
 import com.google.android.material.snackbar.Snackbar
 import java.util.regex.Pattern
+
 
 class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
     private var errorMsg: String? = null
@@ -40,15 +43,28 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
         checkNickname()
     }
 
-    private fun closeKeyboard()
-    {
+    private fun changeBtnColor() {
+        with(binding) {
+            if(signupPasswordCheckEt.text.toString().isNotEmpty() && signupStudentIdEt.text.toString().isNotEmpty() &&
+                signupNicknameEt.text.toString().isNotEmpty() && signupPasswordEt.text.toString().isNotEmpty()) {
+                signupSignupBtn.setBackgroundColor(R.drawable.border_10dp_orange_active)
+            }
+            else{
+                signupSignupBtn.setBackgroundColor(R.drawable.border_10dp_orange_trans_active)
+            }
+        }
+    }
+
+    private fun closeKeyboard() {
         var view = this.currentFocus
         if(view != null)
         {
             val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            view.clearFocus() // 포커스 제거
         }
     }
+
 
     private fun checkStudentID() {
         binding.signupStudentIdDoubleCheckBtn.setOnClickListener {
