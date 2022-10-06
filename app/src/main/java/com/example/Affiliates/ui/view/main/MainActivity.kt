@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.R
@@ -79,6 +80,17 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
     override fun onLowMemory() {
         super.onLowMemory()
         mapView.onLowMemory()
+    }
+
+    private var lastTimeBackPressed: Long = 0
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - lastTimeBackPressed < 2000){
+            finishAffinity()
+            return
+        }
+        Toast.makeText(this, "종료하시려면 뒤로가기를 한번 더 눌러주세요.", Toast.LENGTH_SHORT).show()
+        lastTimeBackPressed= System.currentTimeMillis();
     }
 
     @UiThread
