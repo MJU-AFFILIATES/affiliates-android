@@ -24,6 +24,10 @@ class SettingActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.profileLayout.setOnClickListener {
+            startActivity(Intent(this, UpdateProfileActivity::class.java))
+        }
+
         binding.settingReviewTv.setOnClickListener {
             startActivity(Intent(this, MyreviewActivity::class.java))
         }
