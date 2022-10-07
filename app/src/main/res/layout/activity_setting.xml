@@ -29,7 +29,7 @@
             android:id="@+id/setting_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/setting"
+            android:text="@string/set_title"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"

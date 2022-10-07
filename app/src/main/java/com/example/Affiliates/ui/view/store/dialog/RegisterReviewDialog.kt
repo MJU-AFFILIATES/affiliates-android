@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.widget.Toast
 import com.example.Affiliates.data.CreateReview
 import com.example.Affiliates.databinding.DialogRegisterReviewBinding
 import com.google.android.material.snackbar.Snackbar
@@ -39,7 +40,7 @@ class RegisterReviewDialog(
 
     private fun getReview(): CreateReview {
         with(binding) {
-            val rate = dialogReviewRatingRb.numStars
+            val rate = dialogReviewRatingRb.rating
             val review = dialogReviewInputEt.text.toString()
             return CreateReview(review, rate, storeId)
         }
@@ -51,6 +52,7 @@ class RegisterReviewDialog(
     }
 
     override fun onReviewSuccess(code: Int, result: String) {
+        Toast.makeText(context, "리뷰 작성을 완료했습니다.", Toast.LENGTH_SHORT).show()
         okCallback(true)
         dismiss()
     }
