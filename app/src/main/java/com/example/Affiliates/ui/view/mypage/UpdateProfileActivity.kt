@@ -1,4 +1,4 @@
-package com.example.Affiliates.ui.view
+package com.example.Affiliates.ui.view.mypage
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

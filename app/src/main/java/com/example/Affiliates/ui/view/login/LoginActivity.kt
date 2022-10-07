@@ -14,6 +14,7 @@ import com.example.Affiliates.util.saveJwt
 import com.example.Affiliates.ui.view.login.server.Result
 import com.example.Affiliates.util.ApplicationClass
 import com.example.Affiliates.util.getJwt
+import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity(), LoginView {
     private val binding: ActivityLoginBinding by lazy {
@@ -53,10 +54,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
         with(binding){
             loginLoginBtn.setOnClickListener {
                 if (loginStudentIdInputEt.text.toString().isEmpty()) {
-                    Toast.makeText(this@LoginActivity, "이메일을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "학번을 입력해 주세요.", Snackbar.LENGTH_SHORT).show()
                 }
                 else if (loginPasswordInputEt.text.toString().isEmpty()) {
-                    Toast.makeText(this@LoginActivity, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "비밀번호를 입력해주세요.", Snackbar.LENGTH_SHORT).show()
                 }
                 else {
                     val id: String = binding.loginStudentIdInputEt.text.toString().trim()
@@ -72,7 +73,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun onLoginSuccess(code: Int, result: Result) {
         saveJwt(result.accessToken, result.refreshToken)
-        Toast.makeText(this, "어서오세요!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "어서오세요 :)", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
