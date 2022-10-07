@@ -25,9 +25,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         
-        binding.testBtn.setOnClickListener{
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+//        binding.testBtn.setOnClickListener{
+//            startActivity(Intent(this, MainActivity::class.java))
+//        }
 
         binding.loginSignupBtn.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))

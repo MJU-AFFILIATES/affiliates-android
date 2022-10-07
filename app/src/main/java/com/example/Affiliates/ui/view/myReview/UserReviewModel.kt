@@ -1,20 +1,19 @@
 package com.example.Affiliates.ui.view.myReview
 
-data class MypageModel(
+data class UserReviewModel(
     val isSuccess: Boolean,
     val code: Int,
     val message: String,
-    val result: ArrayList<MyReview>
+    val result: ArrayList<UserReviewList>
 )
 
-data class MyReview (
+data class UserReviewList (
+    val storeIdx: Int,
+    val name: String,
     val category: String,
-    val createdDate: String,
     val imgUrl: String,
     val nickName: String,
     val review: String,
     val star: Int,
-    val storeIdx: Int,
-    val name: String
+    val createdDate: String
 )
-
