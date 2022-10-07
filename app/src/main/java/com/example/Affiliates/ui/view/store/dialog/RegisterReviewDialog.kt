@@ -26,7 +26,6 @@ class RegisterReviewDialog(
         context.dialogResize(this@RegisterReviewDialog, 0.9f, 0.6f)
 //        window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
         initViews()
-
         createReview()
     }
 
@@ -40,7 +39,7 @@ class RegisterReviewDialog(
 
     private fun getReview(): CreateReview {
         with(binding) {
-            val rate = dialogReviewRatingRb.rating
+            val rate = dialogReviewRatingRb.rating.toInt()
             val review = dialogReviewInputEt.text.toString()
             return CreateReview(review, rate, storeId)
         }
