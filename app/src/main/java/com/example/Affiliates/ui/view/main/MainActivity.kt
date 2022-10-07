@@ -13,6 +13,7 @@ import com.example.Affiliates.ui.view.SettingActivity
 import com.example.Affiliates.ui.view.store.Store
 import com.example.Affiliates.ui.view.store.StoreActivity
 import com.example.Affiliates.ui.view.store.StoreModel
+import com.google.android.material.snackbar.Snackbar
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback, Overlay.OnClickLis
             finishAffinity()
             return
         }
-        Toast.makeText(this, "종료하시려면 뒤로가기를 한번 더 눌러주세요.", Toast.LENGTH_SHORT).show()
+        Snackbar.make(binding.root, "종료하시려면 뒤로가기를 한번 더 눌러주세요.", Snackbar.LENGTH_SHORT).show()
         lastTimeBackPressed= System.currentTimeMillis();
     }
 
