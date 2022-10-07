@@ -37,6 +37,11 @@ class SignUpActivity: AppCompatActivity(), SignUpView, CheckView {
             RemoveFocus()
             signUp()
         }
+
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
         RemoveErrorMsg()
         // 추후 리팩토링 (파라미터로 넘겨주기)
         checkStudentID()
