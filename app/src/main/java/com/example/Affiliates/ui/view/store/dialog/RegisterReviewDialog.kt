@@ -39,7 +39,7 @@ class RegisterReviewDialog(
 
     private fun getReview(): CreateReview {
         with(binding) {
-            val rate = dialogReviewRatingRb.numStars
+            val rate = dialogReviewRatingRb.rating
             val review = dialogReviewInputEt.text.toString()
             return CreateReview(review, rate, storeId)
         }

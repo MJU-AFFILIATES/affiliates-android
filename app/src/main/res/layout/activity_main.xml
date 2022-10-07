@@ -7,15 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.main.MainActivity">
 
-        <com.naver.maps.map.MapView
-            android:id="@+id/mapView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
-            app:layout_constraintTop_toBottomOf="@id/layout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+    <com.naver.maps.map.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toBottomOf="@id/layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
@@ -71,77 +71,104 @@
             app:layout_constraintBottom_toBottomOf="@id/loc_layout"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/filter_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginHorizontal="6dp"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="10dp"
             android:paddingBottom="14dp"
             app:layout_constraintTop_toBottomOf="@id/loc_layout"
             app:layout_constraintStart_toStartOf="@id/loc_layout">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_all"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="32dp"
+                android:paddingHorizontal="6dp"
+                android:stateListAnimator="@null"
                 android:text="@string/main_all"
                 android:textSize="14sp"
                 android:textColor="@color/orange"
                 android:textStyle="bold"
                 android:enabled="true"
                 android:background="@drawable/style_main_button_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/filter_cafe"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_cafe"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="68dp"
+                android:layout_height="32dp"
+                android:drawableStart="@drawable/cafe"
+                android:paddingHorizontal="6dp"
+                android:stateListAnimator="@null"
                 android:text="@string/main_cafe"
                 android:textSize="14sp"
                 android:textColor="@color/orange"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/style_main_button_color"
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/filter_all"
+                app:layout_constraintEnd_toStartOf="@id/filter_bar"
                 />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_bar"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="68dp"
+                android:layout_height="32dp"
+                android:drawableStart="@drawable/drink"
+                android:paddingHorizontal="6dp"
+                android:stateListAnimator="@null"
                 android:text="@string/main_bar"
                 android:textSize="14sp"
                 android:textColor="@color/orange"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/style_main_button_color"/>
+                android:background="@drawable/style_main_button_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/filter_cafe"
+                app:layout_constraintEnd_toStartOf="@id/filter_restaurant"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_restaurant"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="68dp"
+                android:layout_height="32dp"
+                android:drawableStart="@drawable/restaurant"
+                android:paddingHorizontal="6dp"
+                android:stateListAnimator="@null"
                 android:text="@string/main_restaurant"
                 android:textSize="14sp"
                 android:textColor="@color/orange"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/style_main_button_color"/>
+                android:background="@drawable/style_main_button_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/filter_bar"
+                app:layout_constraintEnd_toStartOf="@id/filter_activity"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/filter_activity"
-                android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_width="68dp"
+                android:layout_height="32dp"
+                android:drawableStart="@drawable/ect"
+                android:paddingHorizontal="6dp"
+                android:stateListAnimator="@null"
                 android:text="@string/main_activity"
                 android:textSize="14sp"
                 android:textColor="@color/orange"
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
-                android:background="@drawable/style_main_button_color"/>
+                android:background="@drawable/style_main_button_color"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/filter_restaurant"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
