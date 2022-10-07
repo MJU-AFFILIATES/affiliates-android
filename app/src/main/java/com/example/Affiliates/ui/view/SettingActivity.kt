@@ -9,11 +9,18 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.Affiliates.databinding.ActivitySettingBinding
 import com.example.Affiliates.ui.view.login.LoginActivity
+import com.example.Affiliates.ui.view.main.MainInterface
 import com.example.Affiliates.ui.view.myReview.MyreviewActivity
+import com.example.Affiliates.ui.view.mypage.MypageInterface
+import com.example.Affiliates.ui.view.mypage.ProfileModel
+import com.example.Affiliates.ui.view.mypage.UpdateProfileActivity
+import com.example.Affiliates.ui.view.store.StoreModel
 import com.example.Affiliates.util.ApplicationClass
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SettingActivity: AppCompatActivity() {
     private val binding: ActivitySettingBinding by lazy {
@@ -36,9 +43,32 @@ class SettingActivity: AppCompatActivity() {
             finish()
         }
 
+        getUserProfileFromAPI()
         logout()
         withdrawal()
     }
+
+    private fun getUserProfileFromAPI() {
+        ApplicationClass.retrofit.create(MypageInterface::class.java).also {
+            it.getUserProfile().enqueue(object : Callback<ProfileModel> {
+                    override fun onFailure(call: Call<ProfileModel>, t: Throwable) {
+                        Log.d("getUserProfileFromAPI", "GET ERROR_2: " + t.message)
+                    }
+                    override fun onResponse(call: Call<ProfileModel>, response: Response<ProfileModel>) {
+                        if (response.isSuccessful.not()) {
+                            Log.d("getUserProfileFromAPI", "GET ERROR_1")
+                            return
+                        }
+                        response.body()?.let { dto ->
+                            Log.d("getUserProfileFromAPI", "GET SUCCESS")
+                            binding.settigId.text = dto.result.studentNum.toString()
+                            binding.settingName.text = dto.result.nickName
+                        }
+                    }
+                })
+        }
+    }
+
     private fun logout() {
         binding.settingLogoutTv.setOnClickListener {
             var dialog = AlertDialog.Builder(this)

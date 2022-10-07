@@ -33,9 +33,6 @@
 
         </activity>
 
-        <activity android:name="com.example.Affiliates.ui.view.SettingActivity">
-        </activity>
-
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="@string/naver_map_client_id"/>
@@ -44,7 +41,8 @@
         <activity android:name="com.example.Affiliates.ui.view.main.MainActivity"/>
         <activity android:name=".ui.view.store.StoreActivity"/>
         <activity android:name=".ui.view.myReview.MyreviewActivity"/>
-        <activity android:name=".ui.view.UpdateProfileActivity"/>
+        <activity android:name=".ui.view.mypage.UpdateProfileActivity"/>
+        <activity android:name=".ui.view.SettingActivity"/>
     </application>
 
 </manifest>
